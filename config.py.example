@@ -1,0 +1,12 @@
+WIFI_NAME = ''
+WIFI_PASSWORD = ''
+
+PIN = 23
+
+# MQTT
+SERVER = ''
+PORT = 1883
+TOPIC = b'/temperature_humidity'
+
+# 10 minutes
+DEEPSLEEP_TIME_MS = 10 * 60 * 1000
