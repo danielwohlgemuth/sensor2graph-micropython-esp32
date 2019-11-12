@@ -6,8 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-ampy = "*"
 rshell = "*"
+adafruit-ampy = "*"
 
 [requires]
 python_version = "3.6"

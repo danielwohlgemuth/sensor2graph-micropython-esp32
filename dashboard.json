@@ -19,71 +19,77 @@
   "links": [],
   "panels": [
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+      "columns": [
+        {
+          "text": "Current",
+          "value": "current"
+        }
       ],
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
+      "fontSize": "100%",
       "gridPos": {
         "h": 4,
-        "w": 12,
+        "w": 8,
         "x": 0,
         "y": 0
       },
-      "id": 7,
-      "interval": null,
+      "id": 9,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
+      "options": {},
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
         {
-          "name": "value to text",
-          "value": 1
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
         },
         {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "options": {},
-      "postfix": " °C",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
+          "alias": "Current °C",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Current",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
         {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+          "alias": "Device",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Metric",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
         }
       ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
       "targets": [
         {
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  datetime AS \"time\",\n  value\nFROM sensor\nWHERE\n  $__timeFilter(datetime) AND\n  type = 'temperature'\nORDER BY 1",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  datetime AS \"time\",\n  device,\n  value\nFROM sensor\nWHERE\n  $__timeFilter(datetime) AND\n  type = 'temperature'\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
@@ -95,109 +101,94 @@
               }
             ]
           ],
-          "table": "sensor",
-          "timeColumn": "datetime",
-          "timeColumnType": "timestamp",
+          "timeColumn": "time",
           "where": [
             {
               "name": "$__timeFilter",
               "params": [],
               "type": "macro"
-            },
-            {
-              "datatype": "varchar",
-              "name": "",
-              "params": [
-                "type",
-                "=",
-                "'temperature'"
-              ],
-              "type": "expression"
             }
           ]
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Current temperature",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "transform": "timeseries_aggregations",
+      "type": "table"
     },
     {
-      "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
+      "columns": [
+        {
+          "text": "Current",
+          "value": "current"
+        }
       ],
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
+      "fontSize": "100%",
       "gridPos": {
         "h": 4,
-        "w": 12,
-        "x": 12,
+        "w": 9,
+        "x": 8,
         "y": 0
       },
-      "id": 5,
-      "interval": null,
+      "id": 10,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
+      "options": {},
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
         {
-          "name": "value to text",
-          "value": 1
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
         },
         {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "options": {},
-      "postfix": " %",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
+          "alias": "Current %",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Current",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
         {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+          "alias": "Device",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Metric",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
         }
       ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false
-      },
-      "tableColumn": "",
       "targets": [
         {
           "format": "time_series",
           "group": [],
           "metricColumn": "none",
-          "rawQuery": false,
-          "rawSql": "SELECT\n  datetime AS \"time\",\n  value\nFROM sensor\nWHERE\n  $__timeFilter(datetime) AND\n  type = 'humidity'\nORDER BY 1",
+          "rawQuery": true,
+          "rawSql": "SELECT\n  datetime AS \"time\",\n  device,\n  value\nFROM sensor AS s\nWHERE\n  $__timeFilter(datetime) AND\n  s.type = 'humidity'\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
@@ -209,42 +200,120 @@
               }
             ]
           ],
-          "table": "sensor",
-          "timeColumn": "datetime",
-          "timeColumnType": "timestamp",
+          "timeColumn": "time",
           "where": [
             {
               "name": "$__timeFilter",
               "params": [],
               "type": "macro"
-            },
-            {
-              "datatype": "varchar",
-              "name": "",
-              "params": [
-                "type",
-                "=",
-                "'humidity'"
-              ],
-              "type": "expression"
             }
           ]
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Current humidity",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
+      "transform": "timeseries_aggregations",
+      "type": "table"
+    },
+    {
+      "columns": [
         {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
+          "text": "Current",
+          "value": "current"
         }
       ],
-      "valueName": "current"
+      "fontSize": "100%",
+      "gridPos": {
+        "h": 4,
+        "w": 7,
+        "x": 17,
+        "y": 0
+      },
+      "id": 11,
+      "links": [],
+      "options": {},
+      "pageSize": null,
+      "scroll": true,
+      "showHeader": true,
+      "sort": {
+        "col": 0,
+        "desc": true
+      },
+      "styles": [
+        {
+          "alias": "Time",
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "pattern": "Time",
+          "type": "date"
+        },
+        {
+          "alias": "Current °C",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 0,
+          "link": false,
+          "mappingType": 1,
+          "pattern": "Current",
+          "thresholds": [],
+          "type": "number",
+          "unit": "short"
+        },
+        {
+          "alias": "Device",
+          "colorMode": null,
+          "colors": [
+            "rgba(245, 54, 54, 0.9)",
+            "rgba(237, 129, 40, 0.89)",
+            "rgba(50, 172, 45, 0.97)"
+          ],
+          "dateFormat": "YYYY-MM-DD HH:mm:ss",
+          "decimals": 2,
+          "mappingType": 1,
+          "pattern": "Metric",
+          "thresholds": [],
+          "type": "string",
+          "unit": "short"
+        }
+      ],
+      "targets": [
+        {
+          "format": "table",
+          "group": [],
+          "metricColumn": "none",
+          "rawQuery": true,
+          "rawSql": "SELECT DISTINCT device AS \"Device\" FROM sensor;",
+          "refId": "A",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "column"
+              }
+            ]
+          ],
+          "timeColumn": "time",
+          "where": [
+            {
+              "name": "$__timeFilter",
+              "params": [],
+              "type": "macro"
+            }
+          ]
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Devices",
+      "transform": "table",
+      "type": "table"
     },
     {
       "aliasColors": {},
@@ -287,7 +356,7 @@
           "group": [],
           "metricColumn": "type",
           "rawQuery": true,
-          "rawSql": "SELECT\n  s.datetime AS \"time\",\n  CASE WHEN d.name is NULL THEN CAST(s.device_id AS VARCHAR) ELSE d.name END AS metric,\n  s.value\nFROM sensor AS s\nLEFT JOIN device AS d\n  ON (s.device_id = d.device_id)\nWHERE\n  $__timeFilter(datetime) AND\n  s.type = 'temperature'\nORDER BY 1,2",
+          "rawSql": "SELECT\n  datetime AS \"time\",\n  device,\n  value\nFROM sensor\nWHERE\n  $__timeFilter(datetime) AND\n  type = 'temperature'\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
@@ -404,7 +473,7 @@
           "group": [],
           "metricColumn": "type",
           "rawQuery": true,
-          "rawSql": "SELECT\n  s.datetime AS \"time\",\n  CASE WHEN d.name is NULL THEN CAST(s.device_id AS VARCHAR) ELSE d.name END AS metric,\n  s.value\nFROM sensor AS s\nLEFT JOIN device AS d\n  ON (s.device_id = d.device_id)\nWHERE\n  $__timeFilter(datetime) AND\n  s.type = 'humidity'\nORDER BY 1,2",
+          "rawSql": "SELECT\n  datetime AS \"time\",\n  device,\n  value\nFROM sensor\nWHERE\n  $__timeFilter(datetime) AND\n  type = 'humidity'\nORDER BY 1,2",
           "refId": "A",
           "select": [
             [
@@ -482,6 +551,7 @@
       }
     }
   ],
+  "refresh": false,
   "schemaVersion": 18,
   "style": "dark",
   "tags": [],
@@ -520,5 +590,5 @@
   "timezone": "",
   "title": "Sensor",
   "uid": "1vWFTyDWk",
-  "version": 6
+  "version": 2
 }

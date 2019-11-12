@@ -1,97 +1,86 @@
 [
     {
-        "id": "707da19e.430408",
+        "id": "8193a929.fae12",
         "type": "tab",
         "label": "Sensor",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "557a0247.b99714",
+        "id": "c9a71d7a.712cc",
         "type": "inject",
-        "z": "707da19e.430408",
+        "z": "8193a929.fae12",
         "name": "Test mqtt",
         "topic": "",
-        "payload": "{\"datetime\":\"2019-08-06T16:12:11Z\",\"device\":\"da138b74-e518-4643-aa73-8363fd3c25a1\",\"temperature\":19,\"humidity\":50}",
+        "payload": "{\"datetime\":\"2019-08-06T16:12:11Z\",\"device\":\"Bedroom\",\"temperature\":19,\"humidity\":50}",
         "payloadType": "json",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 88,
-        "y": 469,
+        "x": 100,
+        "y": 220,
         "wires": [
             [
-                "dec85ab0.0784a"
+                "d6e75207.7374b"
             ]
         ]
     },
     {
-        "id": "f6343326.101608",
+        "id": "476c253b.996e14",
         "type": "mqtt in",
-        "z": "707da19e.430408",
+        "z": "8193a929.fae12",
         "name": "",
         "topic": "/temperature_humidity",
         "qos": "2",
         "datatype": "auto",
-        "broker": "5b285727.ff6f18",
-        "x": 114,
-        "y": 266,
+        "broker": "eb31139c.9800a",
+        "x": 120,
+        "y": 160,
         "wires": [
             [
-                "d4526798.f12af"
+                "aa766435.ced958",
+                "20899415.cd4074"
             ]
         ]
     },
     {
-        "id": "3520ea72.6d4746",
+        "id": "43ac1705.bfa1d",
         "type": "inject",
-        "z": "707da19e.430408",
-        "name": "Create sensor table",
+        "z": "8193a929.fae12",
+        "name": "Create table",
         "topic": "",
-        "payload": "[{\"query\":\"CREATE TABLE sensor (id SERIAL PRIMARY KEY,device_id UUID NOT NULL,datetime TIMESTAMP NOT NULL,type VARCHAR(30) NOT NULL,value DOUBLE PRECISION NOT NULL);\"}]",
+        "payload": "[{\"query\":\"CREATE TABLE sensor (id SERIAL PRIMARY KEY,device VARCHAR(30) NOT NULL,datetime TIMESTAMP NOT NULL,type VARCHAR(30) NOT NULL,value DOUBLE PRECISION NOT NULL);\"}]",
         "payloadType": "json",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 126,
-        "y": 105,
+        "x": 110,
+        "y": 40,
         "wires": [
             [
-                "d2430130.3b708"
+                "64c0089f.aff4a8"
             ]
         ]
     },
     {
-        "id": "dec85ab0.0784a",
+        "id": "d6e75207.7374b",
         "type": "mqtt out",
-        "z": "707da19e.430408",
+        "z": "8193a929.fae12",
         "name": "",
         "topic": "/temperature_humidity",
         "qos": "",
         "retain": "",
-        "broker": "5b285727.ff6f18",
-        "x": 313,
-        "y": 466,
+        "broker": "eb31139c.9800a",
+        "x": 320,
+        "y": 220,
         "wires": []
     },
     {
-        "id": "d2430130.3b708",
-        "type": "postgres",
-        "z": "707da19e.430408",
-        "postgresdb": "93ad005f.13f448",
-        "name": "",
-        "output": false,
-        "outputs": 0,
-        "x": 375,
-        "y": 150,
-        "wires": []
-    },
-    {
-        "id": "ca195319.38b1a8",
+        "id": "20899415.cd4074",
         "type": "debug",
-        "z": "707da19e.430408",
+        "z": "8193a929.fae12",
         "name": "Debug",
         "active": true,
         "tosidebar": true,
@@ -99,107 +88,35 @@
         "tostatus": false,
         "complete": "payload",
         "targetType": "msg",
-        "x": 336,
-        "y": 344,
+        "x": 350,
+        "y": 160,
         "wires": []
     },
     {
-        "id": "4cf55579.408d14",
-        "type": "postgres",
-        "z": "707da19e.430408",
-        "postgresdb": "93ad005f.13f448",
-        "name": "",
-        "output": false,
-        "outputs": 0,
-        "x": 347,
-        "y": 568,
-        "wires": []
-    },
-    {
-        "id": "b8536068.33209",
+        "id": "44fdbdeb.790a94",
         "type": "inject",
-        "z": "707da19e.430408",
-        "name": "Create device table",
-        "topic": "",
-        "payload": "[{\"query\":\"CREATE TABLE device (id SERIAL PRIMARY KEY,device_id UUID NOT NULL,name VARCHAR(30) NOT NULL);\"}]",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 131,
-        "y": 66,
-        "wires": [
-            [
-                "d2430130.3b708"
-            ]
-        ]
-    },
-    {
-        "id": "1774f6fe.4f8171",
-        "type": "inject",
-        "z": "707da19e.430408",
-        "name": "Add device",
-        "topic": "",
-        "payload": "[{\"query\":\"INSERT INTO device (device_id, name) VALUES ($device_id, $name);\",\"params\":{\"device_id\":\"da138b74-e518-4643-aa73-8363fd3c25a1\",\"name\":\"Bedroom\"}}]",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 102,
-        "y": 151,
-        "wires": [
-            [
-                "d2430130.3b708"
-            ]
-        ]
-    },
-    {
-        "id": "8ba0a489.d54e98",
-        "type": "inject",
-        "z": "707da19e.430408",
+        "z": "8193a929.fae12",
         "name": "Test sensor",
         "topic": "",
-        "payload": "[{\"query\":\"INSERT INTO sensor (device_id, datetime, type, value) VALUES ($datetime, $device_id, $type, $value);\",\"params\":{\"device_id\":\"da138b74-e518-4643-aa73-8363fd3c25a1\",\"datetime\":\"2019-08-06T16:12:11Z\",\"type\":\"temperature\",\"value\":19}}]",
+        "payload": "[{\"query\":\"INSERT INTO sensor (device, datetime, type, value) VALUES ($device, $datetime, $type, $value);\",\"params\":{\"device\":\"Bedroom\",\"datetime\":\"2019-08-06T16:12:11Z\",\"type\":\"temperature\",\"value\":19}}]",
         "payloadType": "json",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 98,
-        "y": 546,
+        "x": 110,
+        "y": 260,
         "wires": [
             [
-                "4cf55579.408d14"
+                "943bbf26.b0fe1"
             ]
         ]
     },
     {
-        "id": "ee6a8d0e.649068",
+        "id": "1ac7492a.319f3f",
         "type": "inject",
-        "z": "707da19e.430408",
-        "name": "Delete device table",
-        "topic": "",
-        "payload": "[{\"query\":\"DROP TABLE device;\"}]",
-        "payloadType": "json",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "onceDelay": 0.1,
-        "x": 114,
-        "y": 602,
-        "wires": [
-            [
-                "4cf55579.408d14"
-            ]
-        ]
-    },
-    {
-        "id": "f50b6b42.876058",
-        "type": "inject",
-        "z": "707da19e.430408",
-        "name": "Delete sensor table",
+        "z": "8193a929.fae12",
+        "name": "Delete table",
         "topic": "",
         "payload": "[{\"query\":\"DROP TABLE sensor;\"}]",
         "payloadType": "json",
@@ -207,52 +124,76 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "x": 114,
-        "y": 658,
+        "x": 110,
+        "y": 300,
         "wires": [
             [
-                "4cf55579.408d14"
+                "943bbf26.b0fe1"
             ]
         ]
     },
     {
-        "id": "d4526798.f12af",
+        "id": "aa766435.ced958",
         "type": "json",
-        "z": "707da19e.430408",
+        "z": "8193a929.fae12",
         "name": "",
         "property": "payload",
         "action": "",
         "pretty": false,
-        "x": 102,
-        "y": 200,
+        "x": 110,
+        "y": 100,
         "wires": [
             [
-                "83cb5191.9fbef"
+                "21b50ae4.f90d2e"
             ]
         ]
     },
     {
-        "id": "83cb5191.9fbef",
+        "id": "21b50ae4.f90d2e",
         "type": "function",
-        "z": "707da19e.430408",
-        "name": "Prepare sensor data",
-        "func": "return { payload: [\n    {\n        \"query\": \"INSERT INTO sensor (device_id, datetime, type, value) VALUES ($device_id, $datetime, 'temperature', $temperature), ($device_id, $datetime, 'humidity', $humidity);\",\n        \"params\": {\n            \"device_id\": msg.payload.device,\n            \"datetime\": msg.payload.datetime,\n            \"temperature\": msg.payload.temperature,\n            \"humidity\": msg.payload.humidity\n        }\n    }\n]};",
+        "z": "8193a929.fae12",
+        "name": "Prepare data",
+        "func": "return { payload: [\n    {\n        \"query\": \"INSERT INTO sensor (device, datetime, type, value) VALUES ($device, $datetime, 'temperature', $temperature), ($device, $datetime, 'humidity', $humidity);\",\n        \"params\": {\n            \"device\": msg.payload.device,\n            \"datetime\": new Date(),\n            \"temperature\": msg.payload.temperature,\n            \"humidity\": msg.payload.humidity\n        }\n    }\n]};",
         "outputs": 1,
         "noerr": 0,
-        "x": 292,
-        "y": 199,
+        "x": 290,
+        "y": 100,
         "wires": [
             [
-                "d2430130.3b708"
+                "64c0089f.aff4a8"
             ]
         ]
     },
     {
-        "id": "5b285727.ff6f18",
+        "id": "64c0089f.aff4a8",
+        "type": "postgres",
+        "z": "8193a929.fae12",
+        "postgresdb": "bc3caee0.f86c38",
+        "name": "",
+        "output": false,
+        "outputs": 0,
+        "x": 360,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "943bbf26.b0fe1",
+        "type": "postgres",
+        "z": "8193a929.fae12",
+        "postgresdb": "bc3caee0.f86c38",
+        "name": "",
+        "output": false,
+        "outputs": 0,
+        "x": 360,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "eb31139c.9800a",
         "type": "mqtt-broker",
         "z": "",
         "name": "",
-        "broker": "192.168.88.247",
+        "broker": "mosquitto",
         "port": "1883",
         "clientid": "",
         "usetls": false,
@@ -270,10 +211,10 @@
         "willPayload": ""
     },
     {
-        "id": "93ad005f.13f448",
+        "id": "bc3caee0.f86c38",
         "type": "postgresdb",
         "z": "",
-        "hostname": "192.168.88.247",
+        "hostname": "postgres",
         "port": "5432",
         "db": "postgres",
         "ssl": false

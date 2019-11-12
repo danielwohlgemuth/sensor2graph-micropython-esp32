@@ -2,26 +2,33 @@ version: '3'
 
 services:
   mosquitto:
+    container_name: mosquitto
     image: eclipse-mosquitto:1.6
     ports:
       - "1883:1883"
+    volumes:
+      - mosquitto-data:/mosquitto/data
+      - mosquitto-log:/mosquitto/log
 
   node-red:
-    image: nodered/node-red-docker:slim-v10
+    container_name: node-red
+    image: nodered/node-red:1.0.3-2-12-minimal
     ports:
       - "1880:1880"
     volumes:
       - node-red:/data
 
   postgres:
-    image: postgres:11-alpine
+    container_name: postgres
+    image: postgres:12-alpine
     ports:
       - "5432:5432"
     volumes:
       - postgres:/var/lib/postgresql/data
 
   grafana:
-    image: grafana/grafana:6.2.5
+    container_name: grafana
+    image: grafana/grafana:6.6.0
     ports:
       - "3000:3000"
     volumes:
@@ -31,3 +38,5 @@ volumes:
   postgres:
   node-red:
   grafana:
+  mosquitto-data:
+  mosquitto-log:
