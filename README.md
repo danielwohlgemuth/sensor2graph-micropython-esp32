@@ -45,7 +45,15 @@ It has 3 pins and includes a resistor. Connect 3.3 volt (red cable) to the left 
 
 #### Code
 
-> Note: The ESP32 needs to be prepared to run Micropython code. See [https://github.com/danielwohlgemuth/setup-micropython-esp32](https://github.com/danielwohlgemuth/setup-micropython-esp32) on how to do this.
+> Note: The ESP32 needs to be prepared to run Micropython code.
+> See [https://github.com/danielwohlgemuth/setup-micropython-esp32](https://github.com/danielwohlgemuth/setup-micropython-esp32) on how to do this.
+
+
+Install the dependecies.
+
+```bash
+pip install -r requirements.txt
+```
 
 Make a copy of `config.py.example` and rename it to `config.py`. On Linux you can do this with `cp config.py.example config.py`.
 
@@ -57,9 +65,9 @@ Next, copy the necessary files to the ESP32.
 [Ampy](https://github.com/pycampers/ampy) from Adafruit is used to copy this.
 
 ```bash
-pipenv run ampy --port /dev/ttyUSB0 put boot.py
-pipenv run ampy --port /dev/ttyUSB0 put main.py
-pipenv run ampy --port /dev/ttyUSB0 put config.py
+ampy --port /dev/ttyUSB0 put boot.py
+ampy --port /dev/ttyUSB0 put main.py
+ampy --port /dev/ttyUSB0 put config.py
 ```
 
 ### Start Mosquitto, Node-RED, PostgreSQL, and Grafana
@@ -213,14 +221,14 @@ log('esp')
 Copy them from the ESP32 to your machine.
 
 ```bash
-pipenv run ampy --port /dev/ttyUSB0 ls
-pipenv run ampy --port /dev/ttyUSB0 get error.log
+ampy --port /dev/ttyUSB0 ls
+ampy --port /dev/ttyUSB0 get error.log
 ```
 
 Or inspect them directly on the ESP32.
 
 ```bash
-pipenv run rshell --port /dev/ttyUSB0 repl
+rshell --port /dev/ttyUSB0 repl
 ```
 
 ```python
